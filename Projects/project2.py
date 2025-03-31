@@ -83,4 +83,5 @@ elif Hulk_points > DoctorStrange_points and IronMan_points and SpiderMan_points 
     print("You are most like Hulk!")
 elif DoctorStrange_points > SpiderMan_points and IronMan_points and Thor_points and Hulk_points:
     print("You are most like Doctor Strange!")
-
+else:
+    print("Go again, you are indecisive")
