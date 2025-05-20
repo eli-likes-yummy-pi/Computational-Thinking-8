@@ -28,30 +28,39 @@ window.tracer(0)
 # TODO - create your player character
 s1 = create_sprite("orangesquare",-100,0)
 s2 = create_sprite("bluesquare2", 100,0)
+s3 = create_sprite("fish", -300,250)
 # TODO - set your background
 set_background("grid")
 # TODO - set the starting value for your variable
-time=0
+timer=20
 
 
 # Section 3: Controls
 # TODO - define your controls
 def move_up():
 	s1.setheading(90)
+	s1.forward(15)
 def move_up2():
 	s2.setheading(90)
+	s2.forward(15)
 def move_down():
 	s1.setheading(270)
+	s1.forward(15)
 def move_down2():
 	s2.setheading(270)
+	s2.forward(15)
 def move_left():
 	s1.setheading(180)
+	s1.forward(15)
 def move_left2():
 	s2.setheading(180)
+	s2.forward(15)
 def move_right():
 	s1.setheading(0)
+	s1.forward(15)
 def move_right2():
 	s2.setheading(0)
+	s2.forward(15)
 # TODO - pick keys for each control
 window.onkeypress(move_up,"Up")
 window.onkeypress(move_down, "Down")
@@ -64,12 +73,38 @@ window.onkeypress(move_right2, "d")
 # Section 4: Game Loop
 window.listen()
 timer = 0
+message = ""
+it = "Orange"
+
 while True:
-	time.sleep(0.1)
+	if get_distance(s1,s2) < 50:
+		s1.goto (-100, 0)
+		s2.goto (100, 0)
+		message = "You are tagged!"
+		if it == "Orange":
+			it = "Blue"
+		elif it == "Blue":
+			it = "Orange"
+			
+		s1.clear()
+		s1.write(message,font = ("Arial",20, "normal"))
+		s3.clear()
+		s3.write(timer,font = ("Arial",20, "normal"))
+		window.update()
+		
+		time.sleep(1)
+	else: 
+		message = ""
+	s1.clear()
+	s1.write(message,font = ("Arial",20, "normal"))
+	s3.clear()
+	s3.write(timer,font = ("Arial",20, "normal"))
+	
+	time.sleep(0.01)
 	timer += 1  
 	 
-    
- 	# TODO - code for automatic actions
+
+ 	# TODO - code for automatic action owwwwwwwwwwwllllllloooax
 
 
 
@@ -78,9 +113,24 @@ while True:
 
 	window.update()
 
-	# if :
-	# 	break
-	
-
-print("Game Over")
-
+	if timer ==  3000:
+		break
+	if s1.ycor()<-250:
+		break
+	if s2.ycor()<-250:
+		break
+	if s1.ycor()>250:
+		break
+	if s2.ycor()>250:
+		break
+	if s1.xcor()<-250:
+		break
+	if s2.xcor()<-250:
+		break
+	if s1.xcor()>250:
+		break
+	if s2.xcor()>250:
+		break
+s1.write(it,font = ("Arial",50, "normal",))
+window.update()
+time.sleep(30)
